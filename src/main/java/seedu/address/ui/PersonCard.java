@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.util.HashMap;
+import java.util.Random;
+
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,8 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.ReadOnlyPerson;
-import java.util.HashMap;
-import java.util.Random;
+
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -54,7 +56,7 @@ public class PersonCard extends UiPart<Region> {
     }
 
     private static String getColorForTag(String tagValue) {
-        if(!tagColors.containsKey(tagValue)) {
+        if (!tagColors.containsKey(tagValue)) {
             tagColors.put(tagValue, colors[random.nextInt(colors.length)]);
         }
         return tagColors.get(tagValue);
@@ -75,6 +77,9 @@ public class PersonCard extends UiPart<Region> {
         });
     }
 
+    /**
+     * Initializes the different tags of each (@code Person) with different colors
+     */
     private void initTags(ReadOnlyPerson person) {
         person.getTags().forEach(tag -> {
             Label tagLabel = new Label(tag.tagName);
