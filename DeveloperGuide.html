@@ -1894,7 +1894,44 @@ for <code>RemarkCommandParser</code>.</p>
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>Address Book</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is the <code>OneBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+</div>
+<h3 id="use-case-add-person" class="discrete">Use case: Add person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to add a person</p>
+</li>
+<li>
+<p>OneBook adds the person</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. The entered person particulars are invalid.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. OneBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
 </div>
 <h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
 <div class="paragraph">
@@ -1906,13 +1943,13 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User requests to list persons</p>
 </li>
 <li>
-<p>Address Book shows a list of persons</p>
+<p>OneBook shows a list of persons</p>
 </li>
 <li>
 <p>User requests to delete a specific person in the list</p>
 </li>
 <li>
-<p>Address Book deletes the person</p>
+<p>OneBook deletes the person</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1935,7 +1972,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. Address Book shows an error message.</p>
+<p>3a1. OneBook shows an error message.</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
@@ -1955,7 +1992,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User requests to find person by name</p>
 </li>
 <li>
-<p>Address Book list the person that corresponds to the name.</p>
+<p>OneBook list the person that corresponds to the name.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1978,44 +2015,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. Address Book shows an error message.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-add-person" class="discrete">Use case: Add person</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests to add a person</p>
-</li>
-<li>
-<p>Address Book adds the person</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a. The entered person particulars are invalid.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a1. Address Book shows an error message.</p>
+<p>1a1. OneBook shows an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2032,7 +2032,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User requests to see usage instructions</p>
 </li>
 <li>
-<p>Address Book displays list of usage instructions</p>
+<p>OneBook displays list of usage instructions</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2071,7 +2071,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Address Book should be easy to use for new users.</p>
 </li>
 <li>
-<p>User should be able to navigate the AddressBook easily.</p>
+<p>User should be able to navigate the Address Book easily.</p>
 </li>
 <li>
 <p>Address Book should have a backup in case contacts are accidentally cleared.</p>
@@ -2174,7 +2174,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-05 06:51:00 +00:00
+Last updated 2017-10-05 07:19:18 +00:00
 </div>
 </div>
 </body>
