@@ -18,7 +18,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>CS2103AUG2017 T17-B4</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -40,6 +40,10 @@
 <li><a href="#clearing-all-entries-code-clear-code">2.11. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">2.12. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">2.13. Saving the data</a></li>
+<li><a href="#recycle-bin-code-bin-list-code-span-class-yellow-coming-in-v2-0-span">2.14. Recycle Bin : <code>bin list</code> <span class="yellow">*Coming in v2.0</span></a></li>
+<li><a href="#restore-entry-from-recycle-bin-code-bin-restore-code-span-class-yellow-coming-in-v2-0-span">2.15. Restore entry from recycle bin : <code>bin restore</code> <span class="yellow">*Coming in v2.0</span></a></li>
+<li><a href="#remove-entry-from-recycle-bin-code-bin-delete-code-span-class-yellow-coming-in-v2-0-span">2.16. Remove entry from recycle bin : <code>bin delete</code> <span class="yellow">*Coming in v2.0</span></a></li>
+<li><a href="#remove-all-entry-in-recycle-bin-code-bin-clear-code-span-class-yellow-coming-in-v2-0-span">2.17. Remove all entry in recycle bin : <code>bin clear</code> <span class="yellow">*Coming in v2.0</span></a></li>
 </ul>
 </li>
 <li><a href="#faq">3. FAQ</a></li>
@@ -493,6 +497,106 @@ Format: <code>exit</code></p>
 There is no need to save manually.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="recycle-bin-code-bin-list-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#recycle-bin-code-bin-list-code-span-class-yellow-coming-in-v2-0-span">2.14. Recycle Bin : <code>bin list</code> <span class="yellow">*Coming in v2.0</span></a></h3>
+<div class="paragraph">
+<p>Shows a list of deleted persons.<br>
+Format: <code>bin</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The listing will be replaced with recycle bin entries.</p>
+</li>
+<li>
+<p>Entries listed here will be automatically removed 7 days after deletion</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="restore-entry-from-recycle-bin-code-bin-restore-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#restore-entry-from-recycle-bin-code-bin-restore-code-span-class-yellow-coming-in-v2-0-span">2.15. Restore entry from recycle bin : <code>bin restore</code> <span class="yellow">*Coming in v2.0</span></a></h3>
+<div class="paragraph">
+<p>Restore the specified person from the bin to the address book.<br>
+Format: <code>bin restore INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Restores the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the bin listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bin list</code><br>
+<code>bin restore 2</code><br>
+Restores the 2nd person in recycle bin to the address book.<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="remove-entry-from-recycle-bin-code-bin-delete-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#remove-entry-from-recycle-bin-code-bin-delete-code-span-class-yellow-coming-in-v2-0-span">2.16. Remove entry from recycle bin : <code>bin delete</code> <span class="yellow">*Coming in v2.0</span></a></h3>
+<div class="paragraph">
+<p>Restore the specified person from the bin to the address book.<br>
+Format: <code>bin remove INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Restores the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the bin listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bin list</code><br>
+<code>bin remove 2</code><br>
+Removes the 2nd person in recycle bin.<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="remove-all-entry-in-recycle-bin-code-bin-clear-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#remove-all-entry-in-recycle-bin-code-bin-clear-code-span-class-yellow-coming-in-v2-0-span">2.17. Remove all entry in recycle bin : <code>bin clear</code> <span class="yellow">*Coming in v2.0</span></a></h3>
+<div class="paragraph">
+<p>Clears the recycle bin.<br>
+Format: <code>bin clear</code></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -555,7 +659,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-18 08:54:49 +00:00
+Last updated 2017-10-18 14:32:58 +00:00
 </div>
 </div>
 </body>
