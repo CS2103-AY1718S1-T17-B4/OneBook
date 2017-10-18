@@ -21,6 +21,8 @@ public class StatusBarFooter extends UiPart<Region> {
 
     public static final String SYNC_STATUS_INITIAL = "Not updated yet in this session";
     public static final String SYNC_STATUS_UPDATED = "Last Updated: %s";
+    public static final String NUM_PERSONS_STRING = " person(s) total";
+    public static final String LOCATION_TEXT = "Contacts stored at: ";
 
     /**
      * Used to generate time stamps.
@@ -40,12 +42,15 @@ public class StatusBarFooter extends UiPart<Region> {
     private StatusBar syncStatus;
     @FXML
     private StatusBar saveLocationStatus;
+    @FXML
+    private StatusBar totalPersons;
 
 
-    public StatusBarFooter(String saveLocation) {
+    public StatusBarFooter(String saveLocation, int totalPersons) {
         super(FXML);
         setSyncStatus(SYNC_STATUS_INITIAL);
         setSaveLocation("./" + saveLocation);
+        setTotalPersons(totalPersons);
         registerAsAnEventHandler(this);
     }
 
@@ -63,8 +68,12 @@ public class StatusBarFooter extends UiPart<Region> {
         return clock;
     }
 
+    private void setTotalPersons(int totalPersons) {
+        this.totalPersons.setText(totalPersons + NUM_PERSONS_STRING);
+    }
+
     private void setSaveLocation(String location) {
-        Platform.runLater(() -> this.saveLocationStatus.setText(location));
+        Platform.runLater(() -> this.saveLocationStatus.setText(LOCATION_TEXT + location));
     }
 
     private void setSyncStatus(String status) {
@@ -77,5 +86,6 @@ public class StatusBarFooter extends UiPart<Region> {
         String lastUpdated = new Date(now).toString();
         logger.info(LogsCenter.getEventHandlingLogMessage(abce, "Setting last updated status to " + lastUpdated));
         setSyncStatus(String.format(SYNC_STATUS_UPDATED, lastUpdated));
+        setTotalPersons(abce.data.getPersonList().size());
     }
 }
