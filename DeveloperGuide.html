@@ -44,10 +44,11 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></li>
-<li><a href="#logging">3.2. Logging</a></li>
-<li><a href="#configuration">3.3. Configuration</a></li>
-<li><a href="#recycle-bin-span-class-yellow-coming-in-v2-0-span">3.4. Recycle bin <span class="yellow">*Coming in v2.0</span></a></li>
+<li><a href="#user-interface">3.1. User Interface</a></li>
+<li><a href="#undo-redo-mechanism">3.2. Undo/Redo mechanism</a></li>
+<li><a href="#logging">3.3. Logging</a></li>
+<li><a href="#configuration">3.4. Configuration</a></li>
+<li><a href="#recycle-bin-span-class-yellow-coming-in-v2-0-span">3.5. Recycle bin <span class="yellow">*Coming in v2.0</span></a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -572,7 +573,39 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></h3>
+<h3 id="user-interface"><a class="link" href="#user-interface">3.1. User Interface</a></h3>
+<div class="paragraph">
+<p>The User Interface is implemented using JavaFx. The Ui consists of a <code>MainWindow</code> which holds <code>StackWindow</code> fields.
+Each of the <code>StackWindow</code> is to be filled with the Ui components as listed below.</p>
+</div>
+<div class="paragraph">
+<p><strong>Ui components:</strong><br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CommandBox</code> - Input field</p>
+</li>
+<li>
+<p><code>PersonListPanel</code> - Display list of Person</p>
+</li>
+<li>
+<p><code>ResultDisplay</code> - Display response of command</p>
+</li>
+<li>
+<p><code>PersonDetailsCard</code> - Display Details of Person</p>
+</li>
+<li>
+<p><code>AddressPanel</code> - Display Address and shows map of address</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Ui also makes use of <code>DarkTheme,css</code> and <code>LightTheme.css</code> file to set the color scheme.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">3.2. Undo/Redo mechanism</a></h3>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
@@ -724,7 +757,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.1. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.2.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code><br>
@@ -768,7 +801,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.2. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -806,20 +839,20 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">3.3. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">3.4. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="recycle-bin-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#recycle-bin-span-class-yellow-coming-in-v2-0-span">3.4. Recycle bin <span class="yellow">*Coming in v2.0</span></a></h3>
+<h3 id="recycle-bin-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#recycle-bin-span-class-yellow-coming-in-v2-0-span">3.5. Recycle bin <span class="yellow">*Coming in v2.0</span></a></h3>
 <div class="paragraph">
 <p>The recycle bin is implemented by having address book store the list of person deleted using a separate list from the main address book list.<br>
 In this list, the person details is stored along with a date of deletion of the person.<br>
 Upon every startup of the program, the system time is checked against the date of deletion, and entries that are more than 7 days old will be removed from the list.<br></p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.4.1. Design considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.5.1. Design considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>RecycleBin</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new type of list <code>RecycleBinList</code> extending from <code>UniquePersonsList</code><br>
@@ -2211,7 +2244,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-19 09:03:18 +00:00
+Last updated 2017-10-19 10:16:52 +00:00
 </div>
 </div>
 </body>
