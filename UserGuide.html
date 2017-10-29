@@ -47,7 +47,7 @@
 <li><a href="#clearing-all-entries-code-clear-code">3.12. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#locating-persons-code-sort-code">3.13. Locating persons: <code>sort</code></a></li>
 <li><a href="#importing-a-vcard-file-vcf-to-onebook-code-import-code">3.14. Importing a VCard file(.vcf) to OneBook : <code>import</code></a></li>
-<li><a href="#exporting-a-vcard-file-vcf-from-onebook-code-export-code">3.15. Exporting a VCard file(.vcf) from OneBook : <code>export</code></a></li>
+<li><a href="#exporting-from-onebook-to-vcard-file-vcf-or-csv-file-csv-code-export-code">3.15. Exporting from OneBook to VCard file(.vcf) or CSV file(.csv) : <code>export</code></a></li>
 <li><a href="#recycle-bin-code-bin-code">3.16. Recycle Bin : <code>bin</code></a></li>
 <li><a href="#restore-entry-from-recycle-bin-code-restore-code">3.17. Restore entry from recycle bin : <code>restore</code></a></li>
 <li><a href="#remove-entry-from-recycle-bin-code-bindelete-code">3.18. Remove entry from recycle bin : <code>bindelete</code></a></li>
@@ -656,7 +656,7 @@ Format: <code>import [file directory]</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-a-vcard-file-vcf-from-onebook-code-export-code"><a class="link" href="#exporting-a-vcard-file-vcf-from-onebook-code-export-code">3.15. Exporting a VCard file(.vcf) from OneBook : <code>export</code></a></h3>
+<h3 id="exporting-from-onebook-to-vcard-file-vcf-or-csv-file-csv-code-export-code"><a class="link" href="#exporting-from-onebook-to-vcard-file-vcf-or-csv-file-csv-code-export-code">3.15. Exporting from OneBook to VCard file(.vcf) or CSV file(.csv) : <code>export</code></a></h3>
 <div class="paragraph">
 <p>Create a VCard file and export from OneBook to directory<br>
 Format: <code>export [file directory]</code></p>
@@ -669,7 +669,7 @@ Format: <code>export [file directory]</code></p>
 <p>Exports a VCard file to a valid directory.</p>
 </li>
 <li>
-<p>The created file must end with VCard extension(.vcf).</p>
+<p>The created file must end with VCard extension(.vcf) or CSV file(.csv).</p>
 </li>
 <li>
 <p>The user can choose the name for the created file.</p>
@@ -694,6 +694,12 @@ Format: <code>export [file directory]</code></p>
 </li>
 <li>
 <p><code>export/Users/user/Desktop/OneBook.vcf</code> (MAC OSX)</p>
+</li>
+<li>
+<p><code>export C:/Users/User/Downloads/OneBook.csv</code> (Windows)</p>
+</li>
+<li>
+<p><code>export /Users/user/Downloads/contacts.csv</code> (MAC OSX)</p>
 </li>
 </ul>
 </div>
@@ -867,7 +873,9 @@ e.g. <code>import /Users/user/Downloads/contacts.vcf</code> (MAC OSX)</p>
 <li>
 <p><strong>Export</strong> : <code>import [file directory]</code><br>
 e.g. <code>export C:/Users/User/Desktop/contacts.vcf</code> (Windows)<br>
-e.g. <code>export /Users/user/Downloads/contacts.vcf</code> (MAC OSX)</p>
+e.g. <code>export /Users/user/Downloads/contacts.vcf</code> (MAC OSX)<br>
+e.g. <code>export C:/Users/User/Desktop/contacts.csv</code> (Windows)<br>
+e.g. <code>export /Users/user/Downloads/contacts.csv</code> (MAC OSX)</p>
 </li>
 <li>
 <p><strong>List</strong> : <code>list</code></p>
@@ -897,7 +905,7 @@ e.g. <code>sort email</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-29 07:32:05 +00:00
+Last updated 2017-10-29 07:38:39 +00:00
 </div>
 </div>
 </body>
