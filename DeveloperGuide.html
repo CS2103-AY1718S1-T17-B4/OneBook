@@ -48,11 +48,11 @@
 <li><a href="#undo-redo-mechanism">3.2. Undo/Redo mechanism</a></li>
 <li><a href="#logging">3.3. Logging</a></li>
 <li><a href="#configuration">3.4. Configuration</a></li>
-<li><a href="#recycle-bin-span-class-yellow-coming-in-v2-0-span">3.5. Recycle bin <span class="yellow">*Coming in v2.0</span></a></li>
+<li><a href="#add-contact-with-optional-fields">3.5. Add Contact with optional fields</a></li>
 <li><a href="#find-mechanism">3.6. Find mechanism</a></li>
 <li><a href="#import-mechanism">3.7. Import mechanism</a></li>
-<li><a href="#add-contact-with-optional-fields">3.8. Add Contact with optional fields</a></li>
-<li><a href="#export-mechanism">3.9. Export mechanism</a></li>
+<li><a href="#export-mechanism">3.8. Export mechanism</a></li>
+<li><a href="#recycle-bin">3.9. Recycle bin</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -849,33 +849,15 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="recycle-bin-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#recycle-bin-span-class-yellow-coming-in-v2-0-span">3.5. Recycle bin <span class="yellow">*Coming in v2.0</span></a></h3>
+<h3 id="add-contact-with-optional-fields"><a class="link" href="#add-contact-with-optional-fields">3.5. Add Contact with optional fields</a></h3>
 <div class="paragraph">
-<p>The recycle bin is implemented by having address book store the list of person deleted using a separate list from the main address book list.<br>
-In this list, the person details is stored along with a date of deletion of the person.<br>
-Upon every startup of the program, the system time is checked against the date of deletion, and entries that are more than 7 days old will be removed from the list.<br></p>
+<p>The <code>add</code> function is implemented by <code>AddCommand</code>. The <code>add</code> function has been enhanced to allow the user to add certain fields into the contact. For the fields that the user does not want to input, no prefixes for the field will be entered. The class <code>AddCommandParser</code> will interpret it as a null value and assign the string '-' to the following field. This will represent that the field is not assigned.</p>
 </div>
-<div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.5.1. Design considerations</a></h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Implementation of <code>RecycleBin</code><br>
-<strong>Alternative 1 (current choice):</strong> Add a new type of list <code>RecycleBinList</code> extending from <code>UniquePersonsList</code><br>
-<strong>Pros:</strong> We will be able to store additional information in the list such as deletion date. Existing methods for <code>UniquePersonsList</code> can still be used.<br>
-<strong>Cons:</strong> Increases workload as a new class is added. Testing of newly introduced class is also required.<br>
-<strong>Alternative 2:</strong> Just reuse <code>UniquePersonsList</code> to store a separate list for <code>recycleBin</code><br>
-<strong>Pros:</strong> Does not require alot of code changes.<br>
-<strong>Cons:</strong> Unable to add additional fields to <code>recycleBin</code> entry. Additional features such as automatic removal of entry from list cannot be implemented without changing existing code in <code>UniquePersonsList</code>.<br></p>
+<p>The <code>name</code> field is compulsory.</p>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Implementation of commands for <code>RecycleBin</code><br>
-<strong>Alternative 1 (current choice):</strong> Add a new group of commands specifically for <code>RecycleBin</code> usage with <code>bin</code> as the first part of each command.<br>
-<strong>Pros:</strong> Less mixup in command purpose. Commands will look more organized. Existing command naming can be reused.<br>
-<strong>Cons:</strong> A new parser will have to added that determines the command is for <code>RecycleBin</code> before command is to be parsed again to determine usage.<br>
-<strong>Alternative 2:</strong> Add a new command for each feature of <code>RecycleBin</code> usage.<br>
-<strong>Pros:</strong> Additional parsing of command is unnecessary.<br>
-<strong>Cons:</strong> Commands will be easily mixed up. Purpose of command will be unintuitive, <code>clear</code> may mean to clear recycle or to clear address book. A separate command name for clearing recycle bin need to be thought of (clear can no longer be used).<br></p>
-</div>
+<p>The fields that are not compulsory are <code>phone</code>, <code>birthday</code>, <code>email</code>, <code>address</code>, <code>organisation</code>, and <code>tags</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -934,19 +916,7 @@ The format in the VCard file is checked to ensure that it is valid before import
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-contact-with-optional-fields"><a class="link" href="#add-contact-with-optional-fields">3.8. Add Contact with optional fields</a></h3>
-<div class="paragraph">
-<p>The <code>add</code> function is implemented by <code>AddCommand</code>. The <code>add</code> function has been enhanced to allow the user to add certain fields into the contact. For the fields that the user does not want to input, no prefixes for the field will be entered. The class <code>AddCommandParser</code> will interpret it as a null value and assign the string '-' to the following field. This will represent that the field is not assigned.</p>
-</div>
-<div class="paragraph">
-<p>The <code>name</code> field is compulsory.</p>
-</div>
-<div class="paragraph">
-<p>The fields that are not compulsory are <code>phone</code>, <code>birthday</code>, <code>email</code>, <code>address</code>, <code>organisation</code>, and <code>tags</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="export-mechanism"><a class="link" href="#export-mechanism">3.9. Export mechanism</a></h3>
+<h3 id="export-mechanism"><a class="link" href="#export-mechanism">3.8. Export mechanism</a></h3>
 <div class="paragraph">
 <p>The <code>export</code> function is implemented by <code>ExportCommand</code>, which exports the contacts in Onebook to a VCard file. It exports a VCard file to a valid directory which the user need to input after keying "export" command in the command box. Inputting a directory is easier for the user so user would know where to find the exported file.
 The fields that are currently exported to VCard file are:<br></p>
@@ -972,6 +942,34 @@ The fields that are currently exported to VCard file are:<br></p>
 <p><code>organisation</code></p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recycle-bin"><a class="link" href="#recycle-bin">3.9. Recycle bin</a></h3>
+<div class="paragraph">
+<p>The recycle bin is implemented by having address book store the list of person deleted using a separate list from the main address book list.<br></p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.9.1. Design considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>RecycleBin</code><br>
+<strong>Alternative 1 (current choice):</strong> Add a new type of list <code>RecycleBinList</code> extending from <code>AddressBook</code><br>
+<strong>Pros:</strong> We will be able to store additional information in the list such as deletion date. Existing methods for <code>AddressBook</code> can still be used.<br>
+<strong>Cons:</strong> Increases workload as a new class is added. Testing of newly introduced class is also required.<br>
+<strong>Alternative 2:</strong> Just reuse <code>AddressBook</code> to store a separate list for <code>recycleBin</code><br>
+<strong>Pros:</strong> Does not require alot of code changes.<br>
+<strong>Cons:</strong> Unable to add additional fields to <code>recycleBin</code> entry. Additional features such as automatic removal of entry from list cannot be implemented without changing existing code in <code>AddressBook</code>.<br></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of commands for <code>RecycleBin</code><br>
+<strong>Alternative 1 (current choice):</strong> Add a new group of commands specifically for <code>RecycleBin</code> usage with <code>bin</code> as the first part of each command.<br>
+<strong>Pros:</strong> Less mixup in command purpose. Commands will look more organized. Existing command naming can be reused.<br>
+<strong>Cons:</strong> A new parser will have to added that determines the command is for <code>RecycleBin</code> before command is to be parsed again to determine usage.<br>
+<strong>Alternative 2:</strong> Add a new command for each feature of <code>RecycleBin</code> usage.<br>
+<strong>Pros:</strong> Additional parsing of command is unnecessary.<br>
+<strong>Cons:</strong> Commands will be easily mixed up. Purpose of command will be unintuitive, <code>clear</code> may mean to clear recycle or to clear address book. A separate command name for clearing recycle bin need to be thought of (clear can no longer be used).<br></p>
+</div>
 </div>
 </div>
 </div>
@@ -2344,7 +2342,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-26 14:17:00 +00:00
+Last updated 2017-10-29 04:38:56 +00:00
 </div>
 </div>
 </body>
