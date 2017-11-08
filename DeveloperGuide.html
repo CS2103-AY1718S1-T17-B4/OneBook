@@ -54,6 +54,7 @@
 <li><a href="#import-mechanism">3.8. Import mechanism</a></li>
 <li><a href="#export-mechanism">3.9. Export mechanism</a></li>
 <li><a href="#recycle-bin">3.10. Recycle bin</a></li>
+<li><a href="#backup-addressbook">3.11. Backup AddressBook</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -986,6 +987,18 @@ The fields that are currently exported to VCard file are:<br></p>
 <strong>Pros:</strong> Additional parsing of command is unnecessary.<br>
 <strong>Cons:</strong> Commands will be easily mixed up. Purpose of command will be unintuitive, <code>clear</code> may mean to clear recycle or to clear address book. A separate command name for clearing recycle bin need to be thought of (clear can no longer be used).<br></p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="backup-addressbook"><a class="link" href="#backup-addressbook">3.11. Backup AddressBook</a></h3>
+<div class="paragraph">
+<p>When OneBook is launched, the system will look for the main data file to open.</p>
+</div>
+<div class="paragraph">
+<p>If the main data file is able to open, it will create a backup copy of the main file from the <code>StorageManager</code>.</p>
+</div>
+<div class="paragraph">
+<p>There is no implementation for the backup function. It will happen on every start up of the application.</p>
 </div>
 </div>
 </div>
@@ -2358,7 +2371,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 11:16:52 +00:00
+Last updated 2017-11-08 12:04:32 +00:00
 </div>
 </div>
 </body>
