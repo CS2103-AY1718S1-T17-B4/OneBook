@@ -56,6 +56,8 @@
 <li><a href="#saving-the-data">3.21. Saving the data</a></li>
 <li><a href="#backup-data">3.22. Backup data</a></li>
 <li><a href="#remove-all-entry-in-recycle-bin-code-bin-clear-code-span-class-yellow-coming-in-v2-0-span">3.23. Remove all entry in recycle bin : <code>bin clear</code> <span class="yellow">*Coming in v2.0</span></a></li>
+<li><a href="#import-from-csv-csv-files-to-onebook-code-import-code-span-class-yellow-coming-in-v2-0-span">3.24. Import from CSV(.csv) files to OneBook : <code>import</code> <span class="yellow">*Coming in v2.0</span></a></li>
+<li><a href="#email-to-a-person-from-onebook-contact-list-via-user-s-default-web-browser-code-email-code-span-class-yellow-coming-in-v2-0-span">3.25. Email to a person from Onebook contact list  via user&#8217;s default web browser: <code>email</code> <span class="yellow">*Coming in v2.0</span></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -596,14 +598,14 @@ Format: <code>clear</code></p>
 <h3 id="locating-persons-code-sort-code"><a class="link" href="#locating-persons-code-sort-code">3.13. Locating persons: <code>sort</code></a></h3>
 <div class="paragraph">
 <p>Sorts the list in OneBook according to name or email in alphabetically order.<br>
-Format: <code>sort MAIN_KEYWORD KEYWORD [MORE_KEYWORDS]</code></p>
+Format: <code>sort [KEYWORD]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The main keyword determines the search field (i.e. <strong>name</strong>/<strong>email</strong>).</p>
+<p>The keyword determines the sort field (<strong>name</strong>/<strong>email</strong>).</p>
 </li>
 <li>
 <p>At least one contact must be in OneBook before sorting.</p>
@@ -904,6 +906,20 @@ There is no need to save manually.</p>
 Format: <code>binclear</code></p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="import-from-csv-csv-files-to-onebook-code-import-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#import-from-csv-csv-files-to-onebook-code-import-code-span-class-yellow-coming-in-v2-0-span">3.24. Import from CSV(.csv) files to OneBook : <code>import</code> <span class="yellow">*Coming in v2.0</span></a></h3>
+<div class="paragraph">
+<p>Import a CSV file from directory to OneBook<br>
+Format: <code>import [file directory]</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="email-to-a-person-from-onebook-contact-list-via-user-s-default-web-browser-code-email-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#email-to-a-person-from-onebook-contact-list-via-user-s-default-web-browser-code-email-code-span-class-yellow-coming-in-v2-0-span">3.25. Email to a person from Onebook contact list  via user&#8217;s default web browser: <code>email</code> <span class="yellow">*Coming in v2.0</span></a></h3>
+<div class="paragraph">
+<p>Emails to the person selected from Onebook contact list  via user&#8217;s default web browser<br>
+Format: <code>email [email website] [Index]</code></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -914,12 +930,20 @@ Format: <code>binclear</code></p>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
 </div>
 <div class="paragraph">
-<p><strong>Q</strong>: Why do I keep getting unknown command when typing a command?
+<p><strong>Q</strong>: Why do I keep getting unknown command when typing a command?<br>
 <strong>A</strong>: The command typed is invalid. Refer to Command Summary section for all the commands.</p>
 </div>
 <div class="paragraph">
-<p><strong>Q</strong>: After entering list command, why do I not get any contact list?
+<p><strong>Q</strong>: After entering list command, why do I not get any contact list?<br>
 <strong>A</strong>: You might not have added at least one person to Onebook. Add at least one person to Onebook and try running the command again.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: Why does it link to Windows mail or MACOS mailand not microsoft outlook when I type email command?<br>
+<strong>A</strong>: Your default mail application might be windows mail, not microsoft outlook. Go to settings to change your default mail application to your preference.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: I have 500 contacts to import. When I use import command, only 490 contacts are imported.<br>
+<strong>A</strong>: You might have duplicated contacts in the list which are not imported.</p>
 </div>
 </div>
 </div>
@@ -1009,7 +1033,7 @@ e.g. <code>bindelete 2, 3</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 12:39:34 +00:00
+Last updated 2017-11-08 14:45:08 +00:00
 </div>
 </div>
 </body>

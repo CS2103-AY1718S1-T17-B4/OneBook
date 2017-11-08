@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Stanley Guok - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Stanley Guok - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-onebook"><a class="link" href="#project-onebook">Project: OneBook</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OneBook is a desktop Address Book application. It uses a Graphical User Interface (GUI) but most of the interactions happen using Command Line Interface (CLI).
+OneBook is optimized for companies' usage. It is also suitable for general usage.
+OneBook allows users to easily import and export contacts, send emails conveniently and stores a database of contacts.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-T17-B4/main/blob/master/collated/main/stan789.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-T17-B4/main/blob/master/collated/test/stan789.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-sort"><a class="link" href="#enhancement-added-sort">Enhancement Added: Sort</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-persons-code-sort-code"><a class="link" href="#locating-persons-code-sort-code">Locating persons: <code>sort</code></a></h3>
+<div class="paragraph">
+<p>Sorts the list in OneBook according to name or email in alphabetically order.<br>
+Format: <code>sort [KEYWORD]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The keyword determines the sort field (<strong>name</strong>/<strong>email</strong>).</p>
+</li>
+<li>
+<p>At least one contact must be in OneBook before sorting.</p>
+</li>
+<li>
+<p>The sort applies to the current listing displayed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sort name</code></p>
+</li>
+<li>
+<p><code>sort email</code></p>
+</li>
+<li>
+<p><code>bin</code><br>
+<code>sort name</code><br>
+Sorts the recycle bin entries in alphabetical order of their name.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>+When adding contacts to OneBook, the contacts are messy as there is no order in which the contacts are organised.</p>
+</div>
+<div class="paragraph">
+<p>+Users might want the contact list to be more organised and sorting by name or email makes it easier to browse the list.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sort-mechanism"><a class="link" href="#sort-mechanism">Sort mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>sort</code> function is implemented by the <code>SortCommand</code>, which sorts the OneBook contact list by name or email alphabetically.
+There is a <code>SortCommandParser</code> which checks for the KEYWORD which must be either name or email.
+When a user wants to sort the address book by name, the logic manager will execute the command by parsing the command to the other classes accordingly.
+When SortCommand is executed, it will call executeSort() in the ModelManager. The executeSort() will call executeSort in Addressbook and finally, sort() method will be called in the UniquePersonList will sort the AddressBook alphabetically.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> What fields to be sorted.<br>
+<strong>Alternative 1 (current choice):</strong>  allows user to sort name and email only.<br>
+<strong>Pros:</strong> Sorting by name or email is the most common, so users do not need to remember the many sorting options.<br>
+<strong>Cons:</strong> Users do not have the freedom to select what fields to be sorted according to.<br>
+<strong>Alternative 2:</strong> Allow users to sort all fields.<br>
+<strong>Pros:</strong> Users have the freedom to select what fields to be sorted according to.<br>
+<strong>Cons:</strong> Not useful as most users sort by name only.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-import"><a class="link" href="#enhancement-added-import">Enhancement Added: Import</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-a-vcard-file-vcf-to-onebook-code-import-code"><a class="link" href="#importing-a-vcard-file-vcf-to-onebook-code-import-code">Importing a VCard file(.vcf) to OneBook : <code>import</code></a></h3>
+<div class="paragraph">
+<p>Import a VCard file from directory to OneBook<br>
+Format: <code>import [file directory]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Imports a VCard file from a valid directory.</p>
+</li>
+<li>
+<p>If format in the file follows VCard format, it will import contacts to OneBook.</p>
+</li>
+<li>
+<p>Notify the number of contacts that are succesfully imported.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>import C:/Users/User/Desktop/contacts.vcf</code> (Windows)</p>
+</li>
+<li>
+<p><code>import C:/Users/User/Downloads/contacts.vcf</code> (Windows)</p>
+</li>
+<li>
+<p><code>import /Users/user/Downloads/contacts.vcf</code> (MAC OSX)</p>
+</li>
+<li>
+<p><code>import /Users/user/Desktop/contacts.vcf</code> (MAC OSX)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Adding alot of contacts at once might be very troublesome and time-consuming for users by using the add command.</p>
+</li>
+<li>
+<p>Allows users to import a VCard file which contains a list of contacts that are export for another contact application as such outlook.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="import-mechanism"><a class="link" href="#import-mechanism">Import mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>import</code> function is implemented by <code>ImportCommand</code>, which imports the contacts in a VCard file to Onebook. It imports a VCard file from a valid directory which the user need to input after keying "import" command in the command box. Inputting a directory is easier than asking the user to put the VCard file in a specfic directory.
+The format in the VCard file is checked to ensure that it is valid before importing it to OneBook. The fields that are currently imported from VCard file are:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>name</code><br></p>
+</li>
+<li>
+<p><code>address</code><br></p>
+</li>
+<li>
+<p><code>email</code><br></p>
+</li>
+<li>
+<p><code>phone number</code><br></p>
+</li>
+<li>
+<p><code>birthday</code><br></p>
+</li>
+<li>
+<p><code>organisation</code><br></p>
+</li>
+<li>
+<p><code>remarks</code></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Which file formats to allow to import.<br>
+<strong>Alternative 1 (current choice):</strong> Only allow VCard file.<br>
+<strong>Pros:</strong> VCard file has a format for each field, which makes importing easier. Some file formats such as csv does not have common heading standards which make import difficult.<br>
+<strong>Cons:</strong> Users can only import VCard file.<br>
+<strong>Alternative 2:</strong> Allow all contact file formats.<br>
+<strong>Pros:</strong> Users can import contacts in the different file formats that have.<br>
+<strong>Cons:</strong> Difficult to implement since file formats such as csv does not have common heading standards.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-export"><a class="link" href="#enhancement-added-export">Enhancement Added: Export</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-from-onebook-to-vcard-file-vcf-or-csv-file-csv-code-export-code"><a class="link" href="#exporting-from-onebook-to-vcard-file-vcf-or-csv-file-csv-code-export-code">Exporting from OneBook to VCard file(.vcf) or CSV file(.csv) : <code>export</code></a></h3>
+<div class="paragraph">
+<p>Create a VCard file or CSV File and export from OneBook to the file directory<br>
+Format: <code>export [file directory]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Exports a VCard file to a valid directory.</p>
+</li>
+<li>
+<p>The created file must end with VCard extension(.vcf) or CSV file(.csv).</p>
+</li>
+<li>
+<p>The user can choose the name for the created file.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>export C:/Users/User/Desktop/contacts.vcf</code> (Windows)</p>
+</li>
+<li>
+<p><code>export C:/Users/User/Downloads/OneBook.vcf</code> (Windows)</p>
+</li>
+<li>
+<p><code>export /Users/user/Downloads/contacts.vcf</code> (MAC OSX)</p>
+</li>
+<li>
+<p><code>export/Users/user/Desktop/OneBook.vcf</code> (MAC OSX)</p>
+</li>
+<li>
+<p><code>export C:/Users/User/Downloads/OneBook.csv</code> (Windows)</p>
+</li>
+<li>
+<p><code>export /Users/user/Downloads/contacts.csv</code> (MAC OSX)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Some users might want to use the contact list in OneBook for other contact application.</p>
+</li>
+<li>
+<p>Some users might not have OneBook application on their current desktop. This is where exporting to csv format helps as users can quickly access their contacts from Microsoft Excel.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="export-mechanism"><a class="link" href="#export-mechanism">Export mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>export</code> function is implemented by <code>ExportCommand</code>, which exports the contacts in Onebook to a VCard file. It exports a VCard file to a valid directory which the user need to input after keying "export" command in the command box. Inputting a directory is easier for the user so user would know where to find the exported file.
+The fields that are currently exported to VCard file are:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>name</code><br></p>
+</li>
+<li>
+<p><code>address</code><br></p>
+</li>
+<li>
+<p><code>email</code><br></p>
+</li>
+<li>
+<p><code>phone number</code><br></p>
+</li>
+<li>
+<p><code>birthday</code><br></p>
+</li>
+<li>
+<p><code>organisation</code><br></p>
+</li>
+<li>
+<p><code>remarks</code></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Which file formats to allow to export.<br>
+<strong>Alternative 1 (current choice):</strong> Only allow VCard file and csv file.<br>
+<strong>Pros:</strong> csv file and VCard file format are the most common file formats for contacts which makes it easy for users to import to other contact applications.<br>
+<strong>Cons:</strong> Users can only export VCard file or csv file.<br>
+<strong>Alternative 2:</strong> Allow user to export to all other file formats.<br>
+<strong>Pros:</strong> Users can choose which file format they want to export as.<br>
+<strong>Cons:</strong> Difficult to implement there are alot of file formats to implement for export.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-email"><a class="link" href="#enhancement-added-email">Enhancement Added: Email</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-4"><a class="link" href="#external-behavior-4">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="email-to-a-person-from-onebook-contact-list-code-email-code"><a class="link" href="#email-to-a-person-from-onebook-contact-list-code-email-code">Email to a person from Onebook contact list : <code>email</code></a></h3>
+<div class="paragraph">
+<p>Emails to the person selected from Onebook contact list<br>
+Format: <code>email [Index]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Email to the person from the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The selected person&#8217;s email address must not be empty.</p>
+</li>
+<li>
+<p>The command will open user&#8217;s desktop default mail application. Users need to sign in to the mail application if they havent before they can send an email to the recipent(selected person).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>email 1</code></p>
+</li>
+<li>
+<p><code>email 3</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>When sending email to one of the person in OneBook&#8217;s contact list, it might be troublesome to copy and paste the email address when composing a new email.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="email-mechanism"><a class="link" href="#email-mechanism">Email mechanism</a></h3>
+<div class="paragraph">
+<p>The email function is implemented by the EmailCommand, which will fill in the email address in the compose message in user’s desktop default application.
+Users will key in email index where index refers to the index of the person listed in the PersonListPanel which they wish to email to. It will be parse through AddressBookParser and EmailCommandParser to extract the index. A new EmailCommand will be created and the EmailCommand open user’s desktop default mail application.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">Design considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How should the email work.<br>
+<strong>Alternative 1 (current choice):</strong> opened via user’s default desktop application.<br>
+<strong>Pros:</strong> It is easy to implement. Most operating system such as Windows or MacOS have a email application installed.<br>
+<strong>Cons:</strong> Users need to make sure the email application such as Microsoft outlook is their desktop default application. Users need a email application on their desktop/computers.<br>
+<strong>Alternative 2:</strong> email directly from the command box using Java Mail API.<br>
+<strong>Pros:</strong> Users do not need to get out of java application to send an email.<br>
+<strong>Cons:</strong> If users need to type long messages, it will be problematic as the command box is not long enough to preview the whole message at once.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Design and add application icon for OneBook</p>
+</li>
+<li>
+<p>Reported bugs (<a href="https://github.com/CS2103AUG2017-W15-B3/main/issues/101">ConnectUs #101</a>,
+<a href="https://github.com/CS2103AUG2017-W15-B3/main/issues/96">ConnectUs #96</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-08 14:45:08 +00:00
+</div>
+</div>
+</body>
+</html>
