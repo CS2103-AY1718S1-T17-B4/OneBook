@@ -50,9 +50,10 @@
 <li><a href="#configuration">3.4. Configuration</a></li>
 <li><a href="#add-contact-with-optional-fields">3.5. Add Contact with optional fields</a></li>
 <li><a href="#find-mechanism">3.6. Find mechanism</a></li>
-<li><a href="#import-mechanism">3.7. Import mechanism</a></li>
-<li><a href="#export-mechanism">3.8. Export mechanism</a></li>
-<li><a href="#recycle-bin">3.9. Recycle bin</a></li>
+<li><a href="#delete-mechanism">3.7. Delete mechanism</a></li>
+<li><a href="#import-mechanism">3.8. Import mechanism</a></li>
+<li><a href="#export-mechanism">3.9. Export mechanism</a></li>
+<li><a href="#recycle-bin">3.10. Recycle bin</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -875,10 +876,16 @@ The designated fields allowed are:<br></p>
 <p><code>address</code><br></p>
 </li>
 <li>
-<p><code>email</code> (each keyword must contain a match)<br></p>
+<p><code>email</code><br></p>
 </li>
 <li>
 <p><code>phone number</code><br></p>
+</li>
+<li>
+<p><code>birthday month</code><br></p>
+</li>
+<li>
+<p><code>organisation</code><br></p>
 </li>
 </ul>
 </div>
@@ -887,7 +894,16 @@ The designated fields allowed are:<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="import-mechanism"><a class="link" href="#import-mechanism">3.7. Import mechanism</a></h3>
+<h3 id="delete-mechanism"><a class="link" href="#delete-mechanism">3.7. Delete mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>delete</code> function is implemented by <code>DeleteCommand</code>. The function has been enhanced to allow multiple deletions at once. <code>DeleteCommandParser</code> returns a <code>DeleteCommand</code> with an array of indexes which are taken from the user input. <code>DeleteCommand</code> then executes the deletion of the respective persons.</p>
+</div>
+<div class="paragraph">
+<p>The indexes given by the user must be separated by a comma for multiple deletions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="import-mechanism"><a class="link" href="#import-mechanism">3.8. Import mechanism</a></h3>
 <div class="paragraph">
 <p>The <code>import</code> function is implemented by <code>ImportCommand</code>, which imports the contacts in a VCard file to Onebook. It imports a VCard file from a valid directory which the user need to input after keying "import" command in the command box. Inputting a directory is easier than asking the user to put the VCard file in a specfic directory.
 The format in the VCard file is checked to ensure that it is valid before importing it to OneBook. The fields that are currently imported from VCard file are:<br></p>
@@ -916,7 +932,7 @@ The format in the VCard file is checked to ensure that it is valid before import
 </div>
 </div>
 <div class="sect2">
-<h3 id="export-mechanism"><a class="link" href="#export-mechanism">3.8. Export mechanism</a></h3>
+<h3 id="export-mechanism"><a class="link" href="#export-mechanism">3.9. Export mechanism</a></h3>
 <div class="paragraph">
 <p>The <code>export</code> function is implemented by <code>ExportCommand</code>, which exports the contacts in Onebook to a VCard file. It exports a VCard file to a valid directory which the user need to input after keying "export" command in the command box. Inputting a directory is easier for the user so user would know where to find the exported file.
 The fields that are currently exported to VCard file are:<br></p>
@@ -945,12 +961,12 @@ The fields that are currently exported to VCard file are:<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="recycle-bin"><a class="link" href="#recycle-bin">3.9. Recycle bin</a></h3>
+<h3 id="recycle-bin"><a class="link" href="#recycle-bin">3.10. Recycle bin</a></h3>
 <div class="paragraph">
 <p>The recycle bin is implemented by having address book store the list of person deleted using a separate list from the main address book list.<br></p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.9.1. Design considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.10.1. Design considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>RecycleBin</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new type of list <code>RecycleBinList</code> extending from <code>AddressBook</code><br>
@@ -2342,7 +2358,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 11:16:05 +00:00
+Last updated 2017-11-08 11:16:52 +00:00
 </div>
 </div>
 </body>

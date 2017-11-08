@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Gideon Fu - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Gideon Fu - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-onebook"><a class="link" href="#project-onebook">Project: OneBook</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OneBook is a desktop Address Book application. It uses a Graphical User Interface (GUI) but most of the interactions happen using Command Line Interface (CLI).</p>
+</div>
+<div class="paragraph">
+<p>OneBook is optimized for companies' usage. It is also suitable for general usage.</p>
+</div>
+<div class="paragraph">
+<p>OneBook allows users to easily import and export contacts, send emails conveniently and stores a database of contacts.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-T17-B4/main/blob/master/collated/main/Gideonfu.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-T17-B4/main/blob/master/collated/test/Gideonfu.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-modify-delete-command"><a class="link" href="#enhancement-added-modify-delete-command">Enhancement Added: Modify Delete command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">Deleting a person : <code>delete</code></a></h3>
+<div class="paragraph">
+<p>Deletes the specified person(s) from the address book.<br>
+Format: <code>delete INDEX, [MORE_INDEXES]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the person(s) at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The indexes <strong>must be in ascending order</strong>.</p>
+</li>
+<li>
+<p><code>delete</code> <strong>does not delete contacts from the Recycle Bin</strong>. Use <code>bindelete</code> instead.</p>
+</li>
+<li>
+<p><code>delete</code> <strong>will still delete contacts from OneBook</strong> even after using <code>bin</code> to display the Recycle Bin.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>delete 2</code><br>
+Deletes the 2nd person in the address book.</p>
+</li>
+<li>
+<p><code>list</code><br>
+<code>delete 3, 4</code><br>
+Deletes the 3rd and 4th persons in the address book.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>delete 1</code><br>
+Deletes the 1st person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Deleting contacts one by one can be extremely time consuming if the user wishes to delete many contacts. Having a <code>delete</code> command that simply allows for only one deletion is not suitable. The modified <code>delete</code> command is now able to delete multiple contacts in a single command by separating the indexes with a comma.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-mechanism"><a class="link" href="#delete-mechanism">Delete mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>delete</code> function is implemented by <code>DeleteCommand</code>. The function has been enhanced to allow multiple deletions at once. <code>DeleteCommandParser</code> returns a <code>DeleteCommand</code> with an array of indexes which are taken from the user input. <code>DeleteCommand</code> then executes the deletion of the respective persons.</p>
+</div>
+<div class="paragraph">
+<p>The indexes given by the user must be separated by a comma for multiple deletions.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-modify-find-command"><a class="link" href="#enhancement-added-modify-find-command">Enhancement Added: Modify Find command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-persons-code-find-code"><a class="link" href="#locating-persons-code-find-code">Locating persons: <code>find</code></a></h3>
+<div class="paragraph">
+<p>Finds persons whose particular field contain any of the given keywords.<br>
+Format: <code>find MAIN_KEYWORD KEYWORD [MORE_KEYWORDS]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The main keyword determines the search field.</p>
+</li>
+<li>
+<p>Accepted main keywords: <strong>name</strong> / <strong>address</strong> / <strong>email</strong> / <strong>phone</strong> / <strong>birthday</strong> / <strong>tag</strong> / <strong>org</strong> (organisation).</p>
+</li>
+<li>
+<p>The search is case insensitive. e.g <code>name hans</code> will return <code>Hans</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>name Hans Bo</code> will return <code>Bo Hans</code></p>
+</li>
+<li>
+<p>The search filter applies to the current list displayed</p>
+</li>
+<li>
+<p>Partial words will still be matched e.g. <code>name Han</code> will return <code>Hans</code></p>
+</li>
+<li>
+<p><strong>name</strong> / <strong>email</strong> / <strong>phone</strong> / <strong>tag</strong>: Persons containing at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>name Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+</li>
+<li>
+<p><strong>address</strong> / <strong>org</strong>: Persons containing all the keywords will be returned (i.e. <code>AND</code> search). e.g. <code>address Serangoon Street 4</code> will not return <code>Serangoon Street 6</code></p>
+</li>
+<li>
+<p><strong>birthday</strong>: Keywords are expected to be in the format &#8216;mm&#8217;, a 2 digit number indicating the month.</p>
+</li>
+<li>
+<p>Upon usage of this command, the top left of the list will be replaced with <strong>Filtered</strong> to indicate that the list display is filtered.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find name John</code><br>
+Returns <code>john</code> and <code>John Doe</code></p>
+</li>
+<li>
+<p><code>find name Betsy Tim John</code><br>
+Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+</li>
+<li>
+<p><code>find email johndoe</code><br>
+Returns any person having an email containing <code>johndoe</code></p>
+</li>
+<li>
+<p><code>find address Geylang Street 5</code><br>
+Returns only persons having an address containing <code>Geylang Street 5</code></p>
+</li>
+<li>
+<p><code>bin</code><br>
+<code>find name Jake</code><br>
+Returns any person with the name <code>Jake</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="justification-2"><a class="link" href="#justification-2">Justification</a></h3>
+<div class="paragraph">
+<p>By extending the <code>find</code> command to enable searching in the various fields, the utility given to users is greatly enhanced. For example, users will be able to find all persons in a given organisation, or all persons with a certain birthday month. Users can also find a particular person by searching for their phone number, address, or email.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="find-mechanism"><a class="link" href="#find-mechanism">Find mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>find</code> function is implemented by <code>FindCommand</code>, which updates the list of displayed contacts. It holds a predicate from <code>ContainsKeywordsPredicate</code> that runs through each keyword and calls <code>containsWordIgnoreCase</code> each time to search for the keyword in the designated field.<br>
+The designated fields allowed are:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>name</code><br></p>
+</li>
+<li>
+<p><code>address</code><br></p>
+</li>
+<li>
+<p><code>email</code><br></p>
+</li>
+<li>
+<p><code>phone number</code><br></p>
+</li>
+<li>
+<p><code>birthday month</code><br></p>
+</li>
+<li>
+<p><code>organisation</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This feature is case-insensitive, and an exact match is not required for each keyword. e.g. 'jon' will match 'Jonathan'</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Added Remark field into contacts (Pull requests <a href="https://github.com/CS2103AUG2017-T17-B4/main/pull/66">#66</a> <a href="https://github.com/CS2103AUG2017-T17-B4/main/pull/94">#94</a>)</p>
+</li>
+<li>
+<p>Changed browser to display address of selected person in Google Maps (Pull requests <a href="https://github.com/CS2103AUG2017-T17-B4/main/pull/55">#55</a>)</p>
+</li>
+<li>
+<p>Added Java Date Validation to Birthday field and improved <code>BIRTHDAY_VALIDATION_REGEX</code> to check if date given is valid (Pull requests <a href="https://github.com/CS2103AUG2017-T17-B4/main/pull/49">#49</a> <a href="https://github.com/CS2103AUG2017-T17-B4/main/pull/57">#57</a>)</p>
+</li>
+<li>
+<p>Reported bugs (Issues <a href="https://github.com/CS2103AUG2017-T09-B3/main/issues/141">BoNUS #141</a> <a href="https://github.com/CS2103AUG2017-T09-B3/main/issues/142">BoNUS #142</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-08 11:16:52 +00:00
+</div>
+</div>
+</body>
+</html>
