@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Henry Ang - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Henry Ang - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-onebook"><a class="link" href="#project-onebook">Project: OneBook</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OneBook is a desktop Address Book application. It uses a Graphical User Interface (GUI) but most of the interactions happen using Command Line Interface (CLI).</p>
+</div>
+<div class="paragraph">
+<p>OneBook is optimized for companies' usage. It is also suitable for general usage.</p>
+</div>
+<div class="paragraph">
+<p>OneBook allows users to easily import and export contacts, send emails conveniently and stores a database of contacts.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-T17-B4/main/blob/master/collated/main/frozventus.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-T17-B4/main/blob/master/collated/test/frozventus.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-recycle-bin"><a class="link" href="#enhancement-added-recycle-bin">Enhancement Added: Recycle Bin</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recycle-bin-code-bin-code"><a class="link" href="#recycle-bin-code-bin-code">Recycle Bin : <code>bin</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of deleted persons.<br>
+Format: <code>bin</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The listing will be replaced with recycle bin entries.</p>
+</li>
+<li>
+<p>To go back to the contact lists, use the <code>list</code> command.</p>
+</li>
+<li>
+<p>When displaying Recycle Bin, <code>delete</code> <strong>will still be able to delete contacts from OneBook</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="restore-entry-from-recycle-bin-code-restore-code"><a class="link" href="#restore-entry-from-recycle-bin-code-restore-code">Restore entry from recycle bin : <code>restore</code></a></h3>
+<div class="paragraph">
+<p>Restore the specified person from the bin to the address book.<br>
+Format: <code>restore INDEX, [MORE_INDEXES]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Restores the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the bin listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p><code>restore</code> <strong>will still be able to restore contacts from Recycle Bin</strong> even if the current listing shown is the contacts listing.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bin</code><br>
+<code>restore 2</code><br>
+Restores the 2nd person in recycle bin to the address book.<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="remove-entry-from-recycle-bin-code-bindelete-code"><a class="link" href="#remove-entry-from-recycle-bin-code-bindelete-code">Remove entry from recycle bin : <code>bindelete</code></a></h3>
+<div class="paragraph">
+<p>Remove the specified person from the bin.<br>
+Format: <code>bindelete INDEX, [MORE_INDEXES]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Removes the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the bin listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p><code>bindelete</code> <strong>will still be able to delete entries from Recycle Bin</strong> even if the current listing shown is the contacts listing.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bin</code><br>
+<code>bindelete 2</code><br>
+Removes the 2nd person in recycle bin.<br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Accidentally deleting contacts can be a major problem for companies expecially if it is an important contact.
+The <code>undo</code> function is sometimes not suitable for use due to reasons such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Many commands to undo.</p>
+</li>
+<li>
+<p>Application has already been closed and restarted, hence clearing the undo/redo stack.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>restore</code> command allows users to selectively restore deleted contacts.<br>
+The <code>bindelete</code> command allows users to manage their Recycle Bin to reduce clutter.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recycle-bin"><a class="link" href="#recycle-bin">Recycle bin</a></h3>
+<div class="paragraph">
+<p>The recycle bin is implemented by having address book store the list of person deleted using a separate list from the main address book list.<br></p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>RecycleBin</code><br>
+<strong>Alternative 1 (current choice):</strong> Add a new type of list <code>RecycleBinList</code> extending from <code>AddressBook</code><br>
+<strong>Pros:</strong> We will be able to store additional information in the list such as deletion date. Existing methods for <code>AddressBook</code> can still be used.<br>
+<strong>Cons:</strong> Increases workload as a new class is added. Testing of newly introduced class is also required.<br>
+<strong>Alternative 2:</strong> Just reuse <code>AddressBook</code> to store a separate list for <code>recycleBin</code><br>
+<strong>Pros:</strong> Does not require alot of code changes.<br>
+<strong>Cons:</strong> Unable to add additional fields to <code>recycleBin</code> entry. Additional features such as automatic removal of entry from list cannot be implemented without changing existing code in <code>AddressBook</code>.<br></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of commands for <code>RecycleBin</code><br>
+<strong>Alternative 1 (current choice):</strong> Add a new group of commands specifically for <code>RecycleBin</code> usage with <code>bin</code> as the first part of each command.<br>
+<strong>Pros:</strong> Less mixup in command purpose. Commands will look more organized. Existing command naming can be reused.<br>
+<strong>Cons:</strong> A new parser will have to added that determines the command is for <code>RecycleBin</code> before command is to be parsed again to determine usage.<br>
+<strong>Alternative 2:</strong> Add a new command for each feature of <code>RecycleBin</code> usage.<br>
+<strong>Pros:</strong> Additional parsing of command is unnecessary.<br>
+<strong>Cons:</strong> Commands will be easily mixed up. Purpose of command will be unintuitive, <code>clear</code> may mean to clear recycle or to clear address book. A separate command name for clearing recycle bin need to be thought of (clear can no longer be used).<br></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-modify-ui-to-display-contact-details"><a class="link" href="#enhancement-added-modify-ui-to-display-contact-details">Enhancement Added: Modify UI to display contact details.</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui" width="790">
+</div>
+</div>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>The original UI has a large amount of spaced used for a browser display panel of a Google Search of the selected contact&#8217;s name.<br>
+This does not serve much useful purpose while taking a large amount of space.<br>
+To better make use of the space, all details except name, phone and tags of the contacts are stripped from the contact display list on the side.
+The details are then only displayed when the person are selected from the list. The browser panel is also now made to display
+Google Maps address of the selected contact instead.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="user-interface"><a class="link" href="#user-interface">User Interface</a></h3>
+<div class="paragraph">
+<p>The User Interface is implemented using JavaFx. The Ui consists of a <code>MainWindow</code> which holds <code>StackWindow</code> fields.
+Each of the <code>StackWindow</code> is to be filled with the Ui components as listed below.</p>
+</div>
+<div class="paragraph">
+<p><strong>Ui components:</strong><br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CommandBox</code> - Input field</p>
+</li>
+<li>
+<p><code>PersonListPanel</code> - Display list of Person</p>
+</li>
+<li>
+<p><code>ResultDisplay</code> - Display response of command</p>
+</li>
+<li>
+<p><code>PersonDetailsCard</code> - Display Details of Person</p>
+</li>
+<li>
+<p><code>AddressPanel</code> - Display Address and shows map of address</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Ui also makes use of <code>DarkTheme,css</code> and <code>LightTheme.css</code> file to set the color scheme.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Added Birthday field into contacts (Pull requests <a href="https://github.com/CS2103AUG2017-T17-B4/main/pull/23">#23</a>)</p>
+</li>
+<li>
+<p>Setting up project repository (Pull requests <a href="https://github.com/CS2103AUG2017-T17-B4/main/pull/1">#1</a>, <a href="https://github.com/CS2103AUG2017-T17-B4/main/pull/2">#2</a>, <a href="https://github.com/CS2103AUG2017-T17-B4/main/pull/3">#3</a>)</p>
+</li>
+<li>
+<p>Reported bugs (Issues <a href="https://github.com/CS2103AUG2017-T17-B2/main/issues/170">MedNus #170</a>, <a href="https://github.com/CS2103AUG2017-T17-B2/main/issues/172">MedNus #172</a>,
+<a href="https://github.com/CS2103AUG2017-T17-B2/main/issues/174">MedNus #174</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-ticklist"><a class="link" href="#project-ticklist">Project: TickList</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ticklist is a to-do-list application for Android, completed as part of <a href="http://nusskylab-dev.comp.nus.edu.sg/">Orbital</a> together with <a href="https://github.com/DarrenCzen">DarrenCzen</a>.<br>
+The repository can be found here: <a href="https://github.com/FrozVentus/TickList">TickList</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-08 11:16:05 +00:00
+</div>
+</div>
+</body>
+</html>
