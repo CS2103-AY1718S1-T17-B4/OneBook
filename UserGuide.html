@@ -52,12 +52,13 @@
 <li><a href="#recycle-bin-code-bin-code">3.17. Recycle Bin : <code>bin</code></a></li>
 <li><a href="#restore-entry-from-recycle-bin-code-restore-code">3.18. Restore entry from recycle bin : <code>restore</code></a></li>
 <li><a href="#remove-entry-from-recycle-bin-code-bindelete-code">3.19. Remove entry from recycle bin : <code>bindelete</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.20. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.21. Saving the data</a></li>
-<li><a href="#backup-data">3.22. Backup data</a></li>
-<li><a href="#remove-all-entry-in-recycle-bin-code-bin-clear-code-span-class-yellow-coming-in-v2-0-span">3.23. Remove all entry in recycle bin : <code>bin clear</code> <span class="yellow">*Coming in v2.0</span></a></li>
-<li><a href="#import-from-csv-csv-files-to-onebook-code-import-code-span-class-yellow-coming-in-v2-0-span">3.24. Import from CSV(.csv) files to OneBook : <code>import</code> <span class="yellow">*Coming in v2.0</span></a></li>
-<li><a href="#email-to-a-person-from-onebook-contact-list-via-user-s-default-web-browser-code-email-code-span-class-yellow-coming-in-v2-0-span">3.25. Email to a person from Onebook contact list  via user&#8217;s default web browser: <code>email</code> <span class="yellow">*Coming in v2.0</span></a></li>
+<li><a href="#clearing-all-recycle-bin-entries-code-binclear-code">3.20. Clearing all recycle bin entries : <code>binclear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.21. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.22. Saving the data</a></li>
+<li><a href="#backup-data">3.23. Backup data</a></li>
+<li><a href="#remove-all-entry-in-recycle-bin-code-bin-clear-code-span-class-yellow-coming-in-v2-0-span">3.24. Remove all entry in recycle bin : <code>bin clear</code> <span class="yellow">*Coming in v2.0</span></a></li>
+<li><a href="#import-from-csv-csv-files-to-onebook-code-import-code-span-class-yellow-coming-in-v2-0-span">3.25. Import from CSV(.csv) files to OneBook : <code>import</code> <span class="yellow">*Coming in v2.0</span></a></li>
+<li><a href="#email-to-a-person-from-onebook-contact-list-via-user-s-default-web-browser-code-email-code-span-class-yellow-coming-in-v2-0-span">3.26. Email to a person from Onebook contact list  via user&#8217;s default web browser: <code>email</code> <span class="yellow">*Coming in v2.0</span></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -342,7 +343,7 @@ Format: <code>find MAIN_KEYWORD KEYWORD [MORE_KEYWORDS]</code></p>
 <p><strong>birthday</strong>: Keywords are expected to be in the format &#8216;mm&#8217;, a 2 digit number indicating the month.</p>
 </li>
 <li>
-<p>Upon usage of this command, the top left of the list will be replaced with <strong>Filtered</strong> to indicate that the list display is filtered.</p>
+<p>Upon usage of this command, the top left of the list will be appended with <strong>Filtered</strong> to indicate that the list display is filtered.</p>
 </li>
 </ul>
 </div>
@@ -785,7 +786,7 @@ Format: <code>bin</code></p>
 <p>The listing will be replaced with recycle bin entries.</p>
 </li>
 <li>
-<p>To go back to the contact lists, use the <code>list</code> command.</p>
+<p>Upon usage of this command, the top left of the list will be replaced with <strong>Bin</strong> to indicate the list displayed is the recycle bin</p>
 </li>
 <li>
 <p>When displaying Recycle Bin, <code>delete</code> <strong>will still be able to delete contacts from OneBook</strong>.</p>
@@ -874,21 +875,28 @@ Removes the 2nd person in recycle bin.<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.20. Exiting the program : <code>exit</code></a></h3>
+<h3 id="clearing-all-recycle-bin-entries-code-binclear-code"><a class="link" href="#clearing-all-recycle-bin-entries-code-binclear-code">3.20. Clearing all recycle bin entries : <code>binclear</code></a></h3>
+<div class="paragraph">
+<p>Clears all entries from the recycle bin<br>
+Format: <code>binclear</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.21. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.21. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.22. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="backup-data"><a class="link" href="#backup-data">3.22. Backup data</a></h3>
+<h3 id="backup-data"><a class="link" href="#backup-data">3.23. Backup data</a></h3>
 <div class="paragraph">
 <p>OneBook will automatically create a backup copy whenever the application is started.</p>
 </div>
@@ -900,21 +908,21 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-all-entry-in-recycle-bin-code-bin-clear-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#remove-all-entry-in-recycle-bin-code-bin-clear-code-span-class-yellow-coming-in-v2-0-span">3.23. Remove all entry in recycle bin : <code>bin clear</code> <span class="yellow">*Coming in v2.0</span></a></h3>
+<h3 id="remove-all-entry-in-recycle-bin-code-bin-clear-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#remove-all-entry-in-recycle-bin-code-bin-clear-code-span-class-yellow-coming-in-v2-0-span">3.24. Remove all entry in recycle bin : <code>bin clear</code> <span class="yellow">*Coming in v2.0</span></a></h3>
 <div class="paragraph">
 <p>Clears the recycle bin.<br>
 Format: <code>binclear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="import-from-csv-csv-files-to-onebook-code-import-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#import-from-csv-csv-files-to-onebook-code-import-code-span-class-yellow-coming-in-v2-0-span">3.24. Import from CSV(.csv) files to OneBook : <code>import</code> <span class="yellow">*Coming in v2.0</span></a></h3>
+<h3 id="import-from-csv-csv-files-to-onebook-code-import-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#import-from-csv-csv-files-to-onebook-code-import-code-span-class-yellow-coming-in-v2-0-span">3.25. Import from CSV(.csv) files to OneBook : <code>import</code> <span class="yellow">*Coming in v2.0</span></a></h3>
 <div class="paragraph">
 <p>Import a CSV file from directory to OneBook<br>
 Format: <code>import [file directory]</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="email-to-a-person-from-onebook-contact-list-via-user-s-default-web-browser-code-email-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#email-to-a-person-from-onebook-contact-list-via-user-s-default-web-browser-code-email-code-span-class-yellow-coming-in-v2-0-span">3.25. Email to a person from Onebook contact list  via user&#8217;s default web browser: <code>email</code> <span class="yellow">*Coming in v2.0</span></a></h3>
+<h3 id="email-to-a-person-from-onebook-contact-list-via-user-s-default-web-browser-code-email-code-span-class-yellow-coming-in-v2-0-span"><a class="link" href="#email-to-a-person-from-onebook-contact-list-via-user-s-default-web-browser-code-email-code-span-class-yellow-coming-in-v2-0-span">3.26. Email to a person from Onebook contact list  via user&#8217;s default web browser: <code>email</code> <span class="yellow">*Coming in v2.0</span></a></h3>
 <div class="paragraph">
 <p>Emails to the person selected from Onebook contact list  via user&#8217;s default web browser<br>
 Format: <code>email [email website] [Index]</code></p>
@@ -944,6 +952,14 @@ Format: <code>email [email website] [Index]</code></p>
 <div class="paragraph">
 <p><strong>Q</strong>: I have 500 contacts to import. When I use import command, only 490 contacts are imported.<br>
 <strong>A</strong>: You might have duplicated contacts in the list which are not imported.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: How do I unfilter my currently displayed list?<br>
+<strong>A</strong>: Depending on which list you are in. In the contact list, enter <code>list</code> command. In the recycle bin, enter <code>bin</code> command.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: How do I switch back to contact list after I switch to recycle bin?<br>
+<strong>A</strong>: Use the <code>list</code> command.</p>
 </div>
 </div>
 </div>
@@ -1026,6 +1042,9 @@ e.g. <code>restore 2, 3, 4</code></p>
 <p><strong>Bin Delete</strong> : <code>bindelete INDEX</code><br>
 e.g. <code>bindelete 2, 3</code></p>
 </li>
+<li>
+<p><strong>Clear Recycle Bin</strong> : <code>binclear</code></p>
+</li>
 </ul>
 </div>
 </div>
@@ -1033,7 +1052,7 @@ e.g. <code>bindelete 2, 3</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-09 09:07:32 +00:00
+Last updated 2017-11-11 14:57:34 +00:00
 </div>
 </div>
 </body>
