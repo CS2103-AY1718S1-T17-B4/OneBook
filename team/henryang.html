@@ -187,6 +187,24 @@ The <code>bindelete</code> and <code>binclear</code> commands allow users to man
 <p>The recycle bin is implemented by having OneBook store the list of person deleted using a separate list from the main address book list.<br>
 This list is implemented via extending <code>AddressBook</code> class.</p>
 </div>
+<div class="paragraph">
+<p>To support display of <code>RecycleBin</code>, two separate <code>ObservableList&lt;ReadOnlyPerson&gt;</code> are stored in <code>Model</code>. One of the list contains the <code>AddressBook</code> contacts,
+while the other contains the <code>RecycleBin</code> contacts. The displayed <code>ObservableList&lt;ReadOnlyPerson&gt;</code> switches between the two depending on which mode is being displayed.
+This allows for <code>find</code> and <code>sort</code> to retain compability between regular display and bin display.<br>
+The diagram belows shows the sequence of execution when <code>bin</code> is executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/BinListDiagram.png" alt="BinListDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3.11.1 Sequence Diagram for bin operation</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>RecycleBin</code> is one of the components of <code>AddressBookData</code> that is saved in the <code>addressbool.xml</code> file for storage. When <code>AddressBookData</code> is loaded,
+data for <code>AddressBook</code> and <code>RecycleBin</code> are both loaded.</p>
+</div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
 <div class="paragraph">
@@ -321,6 +339,14 @@ of <code>RecycleBin</code>, causing <code>RecycleBin</code> data to be lost upon
 <div class="paragraph">
 <p><em>Figure 2.5.1 : Structure of the Storage Component</em></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddressBookDataClassDiagram.png" alt="AddressBookDataClassDiagram" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.5.2 : Structure of Data Storage</em></p>
+</div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-T17-B4/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
@@ -376,7 +402,7 @@ The repository can be found here: <a href="https://github.com/FrozVentus/TickLis
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 09:44:46 +00:00
+Last updated 2017-11-12 10:40:32 +00:00
 </div>
 </div>
 </body>
