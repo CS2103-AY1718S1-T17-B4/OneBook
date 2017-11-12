@@ -5,14 +5,14 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<title>Stanley Guok - Project Portfolio</title>
+<title>Guok Enjie Stanley - Project Portfolio</title>
 <link rel="stylesheet" href="../stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
 </head>
 <body class="article">
 <div id="header">
-<h1>Stanley Guok - Project Portfolio</h1>
+<h1>Guok Enjie Stanley - Project Portfolio</h1>
 </div>
 <div id="content">
 <div class="sect1">
@@ -113,6 +113,9 @@ When a user wants to sort the address book by name, the logic manager will execu
 <div class="content">
 <img src="../images/SortPersonDiagram.png" alt="SortPersonDiagram" width="800">
 </div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3.7.1 : Sequence Diagram for sort operation</em></p>
 </div>
 <div class="paragraph">
 <p>When SortCommand is executed, it will call executeSort() in the ModelManager. The executeSort() will call executeSort in Addressbook and finally, sort() method will be called in the UniquePersonList will sort the AddressBook alphabetically.</p>
@@ -244,7 +247,18 @@ The format in the VCard file is checked to ensure that it is valid before import
 </div>
 <div class="paragraph">
 <p>The <code>ImportCommandParser</code> will check if the file directory exist and whether the extension is correct. Then it will  create a new <code>ImportCommand</code>.
-When ImportCommand is executed, it will call importFile() in Model Manager which will call getPersonFromFile() in ImportVCardFile. It will return an ArrayList of Person which will be added to OneBook using addPerson() in Model Manager.</p>
+When ImportCommand is executed, it will call importFile() in Model as shown in the diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ImportDiagram.png" alt="ImportDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3.8.1 : Sequence Diagram for import operation</em></p>
+</div>
+<div class="paragraph">
+<p>The Model Manager will then call getPersonFromFile() in ImportVCardFile. It will return an ArrayList of Person which will be added to OneBook using addPerson() in Model Manager.</p>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design considerations</a></h4>
@@ -379,7 +393,18 @@ The fields that are currently exported to VCard file are:<br></p>
 </div>
 <div class="paragraph">
 <p>The <code>ExportCommandParser</code> will check if the file directory exist and whether the extension is correct. Then it will  create a new <code>ExportCommand</code>.
-When ExportCommand is executed, it will call exportFile() in Model Manager which will call either createCsvFile() in ExportCsvFile if the file extension is .csv or createVCardFile() if the file extension is .vcf.
+When ExportCommand is executed, it will call exportFile() in Model.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ExportDiagram.png" alt="ExportDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3.9.1 : Sequence Diagram for export operation</em></p>
+</div>
+<div class="paragraph">
+<p>The model manager will then call either createCsvFile() in ExportCsvFile if the file extension is .csv or createVCardFile() if the file extension is .vcf.
 ExportCsvFile will create a .csv file with the contacts information from OneBook and createVCardFile() will create .vcf file with contacts information from OneBook. The file will be created in the file directory specified by the user.</p>
 </div>
 <div class="sect3">
@@ -501,7 +526,7 @@ Users will key in email index where index refers to the index of the person list
 <div class="ulist">
 <ul>
 <li>
-<p>Design and add application icon for OneBook</p>
+<p>Design and add application icon for OneBook. (<a href="https://github.com/CS2103AUG2017-T17-B4/main/commit/e83218389346f34983358269497972a10c840ceb">Commit link</a>)</p>
 </li>
 <li>
 <p>Reported bugs (<a href="https://github.com/CS2103AUG2017-W15-B3/main/issues/101">ConnectUs #101</a>,
@@ -515,7 +540,7 @@ Users will key in email index where index refers to the index of the person list
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 14:04:40 +00:00
+Last updated 2017-11-12 14:41:47 +00:00
 </div>
 </div>
 </body>
