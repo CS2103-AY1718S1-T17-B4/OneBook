@@ -56,6 +56,7 @@
 <li><a href="#email-mechanism">3.10. Email mechanism</a></li>
 <li><a href="#recycle-bin">3.11. Recycle bin</a></li>
 <li><a href="#backup-addressbook">3.12. Backup AddressBook</a></li>
+<li><a href="#change-mode-mechanism">3.13. Change mode mechanism</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1128,6 +1129,19 @@ data for <code>AddressBook</code> and <code>RecycleBin</code> are both loaded.</
 <p>There is no implementation for the backup function. It will happen on every start up of the application.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="change-mode-mechanism"><a class="link" href="#change-mode-mechanism">3.13. Change mode mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>mode</code> function is implemented by <code>ModeCommand</code>,
+which will change the background theme by replacing the current CSS and HTML files with new files.</p>
+</div>
+<div class="paragraph">
+<p>This is done by calling ChangeCss() and ChangeHtml() in <code>MainWindow</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>UserPrefs</code> will contain the current theme. <code>MainWindow</code> will execute getTheme() to obtain the current theme and change it accordingly.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2087,7 +2101,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 14:41:47 +00:00
+Last updated 2017-11-12 20:20:10 +00:00
 </div>
 </div>
 </body>
