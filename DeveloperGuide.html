@@ -44,19 +44,18 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#user-interface">3.1. User Interface</a></li>
-<li><a href="#undo-redo-mechanism">3.2. Undo/Redo mechanism</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#configuration">3.4. Configuration</a></li>
-<li><a href="#add-contact-with-optional-fields">3.5. Add Contact with optional fields</a></li>
-<li><a href="#find-mechanism">3.6. Find mechanism</a></li>
-<li><a href="#sort-mechanism">3.7. Sort mechanism</a></li>
-<li><a href="#delete-mechanism">3.8. Delete mechanism</a></li>
-<li><a href="#import-mechanism">3.9. Import mechanism</a></li>
-<li><a href="#export-mechanism">3.10. Export mechanism</a></li>
-<li><a href="#email-mechanism">3.11. Email mechanism</a></li>
-<li><a href="#recycle-bin">3.12. Recycle bin</a></li>
-<li><a href="#backup-addressbook">3.13. Backup AddressBook</a></li>
+<li><a href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></li>
+<li><a href="#logging">3.2. Logging</a></li>
+<li><a href="#configuration">3.3. Configuration</a></li>
+<li><a href="#add-contact-with-optional-fields">3.4. Add Contact with optional fields</a></li>
+<li><a href="#find-mechanism">3.5. Find mechanism</a></li>
+<li><a href="#sort-mechanism">3.6. Sort mechanism</a></li>
+<li><a href="#delete-mechanism">3.7. Delete mechanism</a></li>
+<li><a href="#import-mechanism">3.8. Import mechanism</a></li>
+<li><a href="#export-mechanism">3.9. Export mechanism</a></li>
+<li><a href="#email-mechanism">3.10. Email mechanism</a></li>
+<li><a href="#recycle-bin">3.11. Recycle bin</a></li>
+<li><a href="#backup-addressbook">3.12. Backup AddressBook</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -428,10 +427,13 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-T17-B4/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>PersonDisplayCard</code>, <code>StatusBarFooter</code>, <code>AddressPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-T17-B4/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-T17-B4/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+</div>
+<div class="paragraph">
+<p>The color scheme of the <code>UI</code> component is determined using the css files <code>DarkTheme.css</code> and <code>LightTheme.css</code>.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -522,10 +524,11 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the Address Book data.</p>
+<p>stores the Address Book data and Recycle Bin data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;ReadOnlyPerson&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code>ObservableList&lt;ReadOnlyPerson&gt;</code> that is derived between the Address Book data and the Recycle Bin data depending
+on the list being displayed. This data can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -555,7 +558,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in xml format and read it back.</p>
+<p>can save the <code>AddressBookData</code> object of OneBook, which holds both the address book data and recycle bin data, in xml format and read it back.</p>
+</li>
+<li>
+<p>can save a backup copy of the xml data that will be loaded in situations where the main xml data is corrupted.</p>
 </li>
 </ul>
 </div>
@@ -575,39 +581,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="user-interface"><a class="link" href="#user-interface">3.1. User Interface</a></h3>
-<div class="paragraph">
-<p>The User Interface is implemented using JavaFx. The Ui consists of a <code>MainWindow</code> which holds <code>StackWindow</code> fields.
-Each of the <code>StackWindow</code> is to be filled with the Ui components as listed below.</p>
-</div>
-<div class="paragraph">
-<p><strong>Ui components:</strong><br></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>CommandBox</code> - Input field</p>
-</li>
-<li>
-<p><code>PersonListPanel</code> - Display list of Person</p>
-</li>
-<li>
-<p><code>ResultDisplay</code> - Display response of command</p>
-</li>
-<li>
-<p><code>PersonDetailsCard</code> - Display Details of Person</p>
-</li>
-<li>
-<p><code>AddressPanel</code> - Display Address and shows map of address</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The Ui also makes use of <code>DarkTheme,css</code> and <code>LightTheme.css</code> file to set the color scheme.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">3.2. Undo/Redo mechanism</a></h3>
+<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></h3>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
@@ -759,7 +733,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.2.1. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code><br>
@@ -803,7 +777,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.2. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -841,13 +815,13 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">3.4. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">3.3. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-contact-with-optional-fields"><a class="link" href="#add-contact-with-optional-fields">3.5. Add Contact with optional fields</a></h3>
+<h3 id="add-contact-with-optional-fields"><a class="link" href="#add-contact-with-optional-fields">3.4. Add Contact with optional fields</a></h3>
 <div class="paragraph">
 <p>The <code>add</code> function is implemented by <code>AddCommand</code>. The <code>add</code> function has been enhanced to allow the user to add certain fields into the contact. For the fields that the user does not want to input, no prefixes for the field will be entered. The class <code>AddCommandParser</code> will interpret it as a null value and assign the string '-' to the following field. This will represent that the field is not assigned.</p>
 </div>
@@ -859,10 +833,23 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="find-mechanism"><a class="link" href="#find-mechanism">3.6. Find mechanism</a></h3>
+<h3 id="find-mechanism"><a class="link" href="#find-mechanism">3.5. Find mechanism</a></h3>
 <div class="paragraph">
-<p>The <code>find</code> function is implemented by <code>FindCommand</code>, which updates the list of displayed contacts. It holds a predicate from <code>ContainsKeywordsPredicate</code> that runs through each keyword and calls <code>containsWordIgnoreCase</code> each time to search for the keyword in the designated field.<br>
-The designated fields allowed are:<br></p>
+<p>The <code>find</code> function is implemented by <code>FindCommand</code>, which updates the list of displayed contacts. <code>FindCommandParser</code> checks that the KEYWORDS entered are valid, then passes a predicate from <code>ContainsKeywordsPredicate</code> into <code>FindCommand</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>Given below is the Sequence Diagram that shows how the <code>find</code> operation works:<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FindPersonDiagram.png" alt="FindPersonDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3.6.1 : Sequence Diagram for find operation</em></p>
+</div>
+<div class="paragraph">
+<p>The designated fields allowed are:<br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -887,11 +874,17 @@ The designated fields allowed are:<br></p>
 </ul>
 </div>
 <div class="paragraph">
-<p>This feature is case-insensitive, and an exact match is not required for each keyword. e.g. 'jon' will match 'Jonathan'</p>
+<p><strong>Aspect:</strong> Command keywords.<br>
+<strong>Alternative 1 (current choice):</strong>  Allow user to search each field using specific keywords.<br>
+<strong>Pros:</strong> More utility is given to users as they can find their contacts using specific keywords for the individual fields.<br>
+<strong>Cons:</strong> Too many main keywords for users to remember.<br>
+<strong>Alternative 2:</strong> Allow user to search for all fields without specific keywords.<br>
+<strong>Pros:</strong> No extra keywords to remember.<br>
+<strong>Cons:</strong> Search may end up overlapping with other unwanted fields, giving a less precise search.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sort-mechanism"><a class="link" href="#sort-mechanism">3.7. Sort mechanism</a></h3>
+<h3 id="sort-mechanism"><a class="link" href="#sort-mechanism">3.6. Sort mechanism</a></h3>
 <div class="paragraph">
 <p>The <code>sort</code> function is implemented by the <code>SortCommand</code>, which sorts the OneBook contact list by name or email alphabetically.
 There is a <code>SortCommandParser</code> which checks for the KEYWORD which must be either name or email.
@@ -906,7 +899,7 @@ When a user wants to sort the address book by name, the logic manager will execu
 <p>When SortCommand is executed, it will call executeSort() in the ModelManager. The executeSort() will call executeSort in Addressbook and finally, sort() method will be called in the UniquePersonList will sort the AddressBook alphabetically.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.7.1. Design considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.6.1. Design considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> What fields to be sorted.<br>
 <strong>Alternative 1 (current choice):</strong>  allows user to sort name and email only.<br>
@@ -919,7 +912,7 @@ When a user wants to sort the address book by name, the logic manager will execu
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-mechanism"><a class="link" href="#delete-mechanism">3.8. Delete mechanism</a></h3>
+<h3 id="delete-mechanism"><a class="link" href="#delete-mechanism">3.7. Delete mechanism</a></h3>
 <div class="paragraph">
 <p>The <code>delete</code> function is implemented by <code>DeleteCommand</code>. The function has been enhanced to allow multiple deletions at once. <code>DeleteCommandParser</code> returns a <code>DeleteCommand</code> with an array of indexes which are taken from the user input. <code>DeleteCommand</code> then executes the deletion of the respective persons.</p>
 </div>
@@ -928,7 +921,7 @@ When a user wants to sort the address book by name, the logic manager will execu
 </div>
 </div>
 <div class="sect2">
-<h3 id="import-mechanism"><a class="link" href="#import-mechanism">3.9. Import mechanism</a></h3>
+<h3 id="import-mechanism"><a class="link" href="#import-mechanism">3.8. Import mechanism</a></h3>
 <div class="paragraph">
 <p>The <code>import</code> function is implemented by <code>ImportCommand</code>, which imports the contacts in a VCard file to Onebook. It imports a VCard file from a valid directory which the user need to input after keying "import" command in the command box. Inputting a directory is easier than asking the user to put the VCard file in a specific directory.
 The format in the VCard file is checked to ensure that it is valid before importing it to OneBook. The fields that are currently imported from VCard file are:<br></p>
@@ -963,7 +956,7 @@ The format in the VCard file is checked to ensure that it is valid before import
 When ImportCommand is executed, it will call importFile() in Model Manager which will call getPersonFromFile() in ImportVCardFile. It will return an ArrayList of Person which will be added to OneBook using addPerson() in Model Manager.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.9.1. Design considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.8.1. Design considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Which file formats to allow to import.<br>
 <strong>Alternative 1 (current choice):</strong> Only allow VCard file.<br>
@@ -976,7 +969,7 @@ When ImportCommand is executed, it will call importFile() in Model Manager which
 </div>
 </div>
 <div class="sect2">
-<h3 id="export-mechanism"><a class="link" href="#export-mechanism">3.10. Export mechanism</a></h3>
+<h3 id="export-mechanism"><a class="link" href="#export-mechanism">3.9. Export mechanism</a></h3>
 <div class="paragraph">
 <p>The <code>export</code> function is implemented by <code>ExportCommand</code>, which exports the contacts in Onebook to a VCard file. It exports a VCard file to a valid directory which the user need to input after keying "export" command in the command box. Inputting a directory is easier for the user so user would know where to find the exported file.
 The fields that are currently exported to VCard file are:<br></p>
@@ -1012,7 +1005,7 @@ When ExportCommand is executed, it will call exportFile() in Model Manager which
 ExportCsvFile will create a .csv file with the contacts information from OneBook and createVCardFile() will create .vcf file with contacts information from OneBook. The file will be created in the file directory specified by the user.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.10.1. Design considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.9.1. Design considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Which file formats to allow to export.<br>
 <strong>Alternative 1 (current choice):</strong> Only allow VCard file and csv file.<br>
@@ -1025,13 +1018,13 @@ ExportCsvFile will create a .csv file with the contacts information from OneBook
 </div>
 </div>
 <div class="sect2">
-<h3 id="email-mechanism"><a class="link" href="#email-mechanism">3.11. Email mechanism</a></h3>
+<h3 id="email-mechanism"><a class="link" href="#email-mechanism">3.10. Email mechanism</a></h3>
 <div class="paragraph">
 <p>The email function is implemented by the EmailCommand, which will fill in the email address in the compose message in user’s desktop default application.
 Users will key in email index where index refers to the index of the person listed in the PersonListPanel which they wish to email to. It will be parse through AddressBookParser and EmailCommandParser to extract the index. A new EmailCommand will be created and the EmailCommand open user’s desktop default mail application.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.11.1. Design considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.10.1. Design considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How should the email work.<br>
 <strong>Alternative 1 (current choice):</strong> opened via user’s default desktop application.<br>
@@ -1044,35 +1037,36 @@ Users will key in email index where index refers to the index of the person list
 </div>
 </div>
 <div class="sect2">
-<h3 id="recycle-bin"><a class="link" href="#recycle-bin">3.12. Recycle bin</a></h3>
+<h3 id="recycle-bin"><a class="link" href="#recycle-bin">3.11. Recycle bin</a></h3>
 <div class="paragraph">
-<p>The recycle bin is implemented by having address book store the list of person deleted using a separate list from the main address book list.<br></p>
+<p>The recycle bin is implemented by having OneBook store the list of person deleted using a separate list from the main address book list.<br>
+This list is implemented via extending <code>AddressBook</code> class.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.12.1. Design considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.11.1. Design considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>RecycleBin</code><br>
-<strong>Alternative 1 (current choice):</strong> Add a new type of list <code>RecycleBinList</code> extending from <code>AddressBook</code><br>
-<strong>Pros:</strong> We will be able to store additional information in the list such as deletion date. Existing methods for <code>AddressBook</code> can still be used.<br>
+<strong>Alternative 1 (current choice):</strong> Add a new type of list <code>RecycleBin</code> extending from <code>AddressBook</code><br>
+<strong>Pros:</strong> We will be able to store additional information in the list. Existing methods for <code>AddressBook</code> can still be used.<br>
 <strong>Cons:</strong> Increases workload as a new class is added. Testing of newly introduced class is also required.<br>
-<strong>Alternative 2:</strong> Just reuse <code>AddressBook</code> to store a separate list for <code>recycleBin</code><br>
+<strong>Alternative 2:</strong> Just reuse <code>AddressBook</code> to store a separate list for <code>RecycleBin</code><br>
 <strong>Pros:</strong> Does not require alot of code changes.<br>
-<strong>Cons:</strong> Unable to add additional fields to <code>recycleBin</code> entry. Additional features such as automatic removal of entry from list cannot be implemented without changing existing code in <code>AddressBook</code>.<br></p>
+<strong>Cons:</strong> Unable to add additional fields to <code>RecycleBin</code> entry. Increases coupling between <code>RecycleBin</code> and <code>AddressBook</code> which is undesired.<br></p>
 </div>
 <hr>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of commands for <code>RecycleBin</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new group of commands specifically for <code>RecycleBin</code> usage with <code>bin</code> as the first part of each command.<br>
 <strong>Pros:</strong> Less mixup in command purpose. Commands will look more organized. Existing command naming can be reused.<br>
-<strong>Cons:</strong> A new parser will have to added that determines the command is for <code>RecycleBin</code> before command is to be parsed again to determine usage.<br>
-<strong>Alternative 2:</strong> Add a new command for each feature of <code>RecycleBin</code> usage.<br>
-<strong>Pros:</strong> Additional parsing of command is unnecessary.<br>
-<strong>Cons:</strong> Commands will be easily mixed up. Purpose of command will be unintuitive, <code>clear</code> may mean to clear recycle or to clear address book. A separate command name for clearing recycle bin need to be thought of (clear can no longer be used).<br></p>
+<strong>Cons:</strong> A new parser will have to added for each command that determines the command is for <code>RecycleBin</code>.<br>
+<strong>Alternative 2:</strong> Add a new command using unused command words for each feature of <code>RecycleBin</code> usage.<br>
+<strong>Pros:</strong> Commands will not have <code>bin</code> in front of each of them, making them less repetitive..<br>
+<strong>Cons:</strong> Commands will be easily mixed up. Purpose of command will be unintuitive, <code>clear</code> may mean to clear recycle bin or to clear address book. A separate command name for clearing recycle bin need to be thought of (clear can no longer be used).<br></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="backup-addressbook"><a class="link" href="#backup-addressbook">3.13. Backup AddressBook</a></h3>
+<h3 id="backup-addressbook"><a class="link" href="#backup-addressbook">3.12. Backup AddressBook</a></h3>
 <div class="paragraph">
 <p>When OneBook is launched, the system will look for the main data file to open.</p>
 </div>
@@ -2042,7 +2036,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 03:59:07 +00:00
+Last updated 2017-11-12 08:09:37 +00:00
 </div>
 </div>
 </body>

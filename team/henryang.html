@@ -5,14 +5,14 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<title>Henry Ang - Project Portfolio</title>
+<title>Henry Ang Tien Hock - Project Portfolio</title>
 <link rel="stylesheet" href="../stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
 </head>
 <body class="article">
 <div id="header">
-<h1>Henry Ang - Project Portfolio</h1>
+<h1>Henry Ang Tien Hock - Project Portfolio</h1>
 </div>
 <div id="content">
 <div class="sect1">
@@ -184,28 +184,29 @@ The <code>bindelete</code> command allows users to manage their Recycle Bin to r
 <div class="sect2">
 <h3 id="recycle-bin"><a class="link" href="#recycle-bin">Recycle bin</a></h3>
 <div class="paragraph">
-<p>The recycle bin is implemented by having address book store the list of person deleted using a separate list from the main address book list.<br></p>
+<p>The recycle bin is implemented by having OneBook store the list of person deleted using a separate list from the main address book list.<br>
+This list is implemented via extending <code>AddressBook</code> class.</p>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>RecycleBin</code><br>
-<strong>Alternative 1 (current choice):</strong> Add a new type of list <code>RecycleBinList</code> extending from <code>AddressBook</code><br>
-<strong>Pros:</strong> We will be able to store additional information in the list such as deletion date. Existing methods for <code>AddressBook</code> can still be used.<br>
+<strong>Alternative 1 (current choice):</strong> Add a new type of list <code>RecycleBin</code> extending from <code>AddressBook</code><br>
+<strong>Pros:</strong> We will be able to store additional information in the list. Existing methods for <code>AddressBook</code> can still be used.<br>
 <strong>Cons:</strong> Increases workload as a new class is added. Testing of newly introduced class is also required.<br>
-<strong>Alternative 2:</strong> Just reuse <code>AddressBook</code> to store a separate list for <code>recycleBin</code><br>
+<strong>Alternative 2:</strong> Just reuse <code>AddressBook</code> to store a separate list for <code>RecycleBin</code><br>
 <strong>Pros:</strong> Does not require alot of code changes.<br>
-<strong>Cons:</strong> Unable to add additional fields to <code>recycleBin</code> entry. Additional features such as automatic removal of entry from list cannot be implemented without changing existing code in <code>AddressBook</code>.<br></p>
+<strong>Cons:</strong> Unable to add additional fields to <code>RecycleBin</code> entry. Increases coupling between <code>RecycleBin</code> and <code>AddressBook</code> which is undesired.<br></p>
 </div>
 <hr>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of commands for <code>RecycleBin</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new group of commands specifically for <code>RecycleBin</code> usage with <code>bin</code> as the first part of each command.<br>
 <strong>Pros:</strong> Less mixup in command purpose. Commands will look more organized. Existing command naming can be reused.<br>
-<strong>Cons:</strong> A new parser will have to added that determines the command is for <code>RecycleBin</code> before command is to be parsed again to determine usage.<br>
-<strong>Alternative 2:</strong> Add a new command for each feature of <code>RecycleBin</code> usage.<br>
-<strong>Pros:</strong> Additional parsing of command is unnecessary.<br>
-<strong>Cons:</strong> Commands will be easily mixed up. Purpose of command will be unintuitive, <code>clear</code> may mean to clear recycle or to clear address book. A separate command name for clearing recycle bin need to be thought of (clear can no longer be used).<br></p>
+<strong>Cons:</strong> A new parser will have to added for each command that determines the command is for <code>RecycleBin</code>.<br>
+<strong>Alternative 2:</strong> Add a new command using unused command words for each feature of <code>RecycleBin</code> usage.<br>
+<strong>Pros:</strong> Commands will not have <code>bin</code> in front of each of them, making them less repetitive..<br>
+<strong>Cons:</strong> Commands will be easily mixed up. Purpose of command will be unintuitive, <code>clear</code> may mean to clear recycle bin or to clear address book. A separate command name for clearing recycle bin need to be thought of (clear can no longer be used).<br></p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -215,9 +216,15 @@ The <code>bindelete</code> command allows users to manage their Recycle Bin to r
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-modify-ui-to-display-contact-details"><a class="link" href="#enhancement-added-modify-ui-to-display-contact-details">Enhancement Added: Modify UI to display contact details.</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<div class="paragraph">
+<p>New Ui</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/Ui.png" alt="Ui" width="790">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -239,35 +246,99 @@ Google Maps address of the selected contact instead.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="user-interface"><a class="link" href="#user-interface">User Interface</a></h3>
-<div class="paragraph">
-<p>The User Interface is implemented using JavaFx. The Ui consists of a <code>MainWindow</code> which holds <code>StackWindow</code> fields.
-Each of the <code>StackWindow</code> is to be filled with the Ui components as listed below.</p>
+<h3 id="ui-component"><a class="link" href="#ui-component">UI component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
+</div>
 </div>
 <div class="paragraph">
-<p><strong>Ui components:</strong><br></p>
+<p><em>Figure 2.2.1 : Structure of the UI Component</em></p>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-T17-B4/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>PersonDisplayCard</code>, <code>StatusBarFooter</code>, <code>AddressPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-T17-B4/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-T17-B4/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+</div>
+<div class="paragraph">
+<p>The color scheme of the <code>UI</code> component is determined using the css files <code>DarkTheme.css</code> and <code>LightTheme.css</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component,</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>CommandBox</code> - Input field</p>
+<p>Executes user commands using the <code>Logic</code> component.</p>
 </li>
 <li>
-<p><code>PersonListPanel</code> - Display list of Person</p>
+<p>Binds itself to some data in the <code>Model</code> so that the UI can auto-update when data in the <code>Model</code> change.</p>
 </li>
 <li>
-<p><code>ResultDisplay</code> - Display response of command</p>
-</li>
-<li>
-<p><code>PersonDetailsCard</code> - Display Details of Person</p>
-</li>
-<li>
-<p><code>AddressPanel</code> - Display Address and shows map of address</p>
+<p>Responds to events raised from various parts of the App and updates the UI accordingly.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The Ui also makes use of <code>DarkTheme,css</code> and <code>LightTheme.css</code> file to set the color scheme.</p>
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-modify-storage-to-save-code-addressbookdata-code-instead-of-code-readonlyaddressbook-code-in-xml-format"><a class="link" href="#enhancement-added-modify-storage-to-save-code-addressbookdata-code-instead-of-code-readonlyaddressbook-code-in-xml-format">Enhancement Added: Modify Storage to save <code>AddressBookData</code> instead of <code>ReadOnlyAddressBook</code> in xml format</a></h3>
+<div class="sect3">
+<h4 id="external-behaviour"><a class="link" href="#external-behaviour">External Behaviour</a></h4>
+<div class="paragraph">
+<p>The storage file <code>addressbook.xml</code> holds the data of <code>AddressBookData</code>, which contains data of both the <code>AddressBook</code> and <code>RecycleBin</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>The original version of Storage only allows storage of one copy of <code>ReadOnlyAddressBook</code>. This makes it impossible to store the data
+of <code>RecycleBin</code>, causing <code>RecycleBin</code> data to be lost upon closing the application.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="storage-component"><a class="link" href="#storage-component">Storage component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.5.1 : Structure of the Storage Component</em></p>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-T17-B4/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Storage</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+</li>
+<li>
+<p>can save the <code>AddressBookData</code> object of OneBook, which holds both the address book data and recycle bin data, in xml format and read it back.</p>
+</li>
+<li>
+<p>can save a backup copy of the xml data that will be loaded in situations where the main xml data is corrupted.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -305,7 +376,7 @@ The repository can be found here: <a href="https://github.com/FrozVentus/TickLis
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 03:59:07 +00:00
+Last updated 2017-11-12 08:09:37 +00:00
 </div>
 </div>
 </body>
