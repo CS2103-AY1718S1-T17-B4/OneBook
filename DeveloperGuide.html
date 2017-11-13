@@ -1136,10 +1136,21 @@ data for <code>AddressBook</code> and <code>RecycleBin</code> are both loaded.</
 which will change the background theme by replacing the current CSS and HTML files with new files.</p>
 </div>
 <div class="paragraph">
-<p>This is done by calling ChangeCss() and ChangeHtml() in <code>MainWindow</code>.</p>
+<p>The diagram below shows the sequence of execution when <code>mode</code> is executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/modeCommand.png" alt="modeCommand" width="800">
+</div>
 </div>
 <div class="paragraph">
-<p><code>UserPrefs</code> will contain the current theme. <code>MainWindow</code> will execute getTheme() to obtain the current theme and change it accordingly.</p>
+<p><em>Figure 3.13.1 Sequence Diagram for mode operation</em></p>
+</div>
+<div class="paragraph">
+<p>ModeCommand will invoke a <code>post(ModeChangeRequestEvent)</code> method which will be read by <code>EventsCentre</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>MainWindow</code> will process the request and change the CSS and HTML files accordingly.</p>
 </div>
 </div>
 </div>
@@ -2101,7 +2112,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 20:20:10 +00:00
+Last updated 2017-11-13 05:38:41 +00:00
 </div>
 </div>
 </body>

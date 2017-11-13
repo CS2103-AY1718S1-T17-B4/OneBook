@@ -176,12 +176,73 @@ Fields that are enclosed by square brackets are optional.
 <hr>
 </div>
 <div class="sect2">
+<h3 id="enhancement-added-change-theme-using-mode-command"><a class="link" href="#enhancement-added-change-theme-using-mode-command">Enhancement Added: Change Theme using Mode Command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-theme-code-mode-code"><a class="link" href="#changing-theme-code-mode-code">Changing theme: <code>mode</code></a></h3>
+<div class="paragraph">
+<p>Changes the theme of OneBook between default mode and lite mode.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>mode</code></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>Changing of themes will enhance the user&#8217;s experience and allow the user interface to be seemingly smoother for the user.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="change-mode-mechanism"><a class="link" href="#change-mode-mechanism">Change mode mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>mode</code> function is implemented by <code>ModeCommand</code>,
+which will change the background theme by replacing the current CSS and HTML files with new files.</p>
+</div>
+<div class="paragraph">
+<p>The diagram below shows the sequence of execution when <code>mode</code> is executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/modeCommand.png" alt="modeCommand" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3.13.1 Sequence Diagram for mode operation</em></p>
+</div>
+<div class="paragraph">
+<p>ModeCommand will invoke a <code>post(ModeChangeRequestEvent)</code> method which will be read by <code>EventsCentre</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>MainWindow</code> will process the request and change the CSS and HTML files accordingly.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
 <h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
 <div class="ulist">
 <ul>
-<li>
-<p>Added a mode command to change the themes (Pull request <a href="https://github.com/CS2103AUG2017-T17-B4/main/pull/27">#27</a>)</p>
-</li>
 <li>
 <p>Added a organisation field into OneBook (Pull request <a href="https://github.com/CS2103AUG2017-T17-B4/main/pull/53">#53</a>)</p>
 </li>
@@ -194,17 +255,21 @@ Fields that are enclosed by square brackets are optional.
 </div>
 </div>
 <div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">Project: PowerPointLabs</a></h2>
+<h2 id="orbital-project-payalarm"><a class="link" href="#orbital-project-payalarm">Orbital Project: PayAlarm</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>{Optionally (not graded), you may include other projects in your portfolio.}</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Worked on an app with an SMS integrating feature. Complete the project with SQL, HTML, CSS. (<a href="https://github.com/darrinloh/payalarm-project">PayAlarm</a>)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 20:20:10 +00:00
+Last updated 2017-11-13 05:38:41 +00:00
 </div>
 </div>
 </body>
